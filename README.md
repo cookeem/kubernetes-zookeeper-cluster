@@ -46,15 +46,14 @@ deployment "zk3" created
 Check the pods and services:
 
 ```sh
-$ kubectl get pods
+$ kubectl get pods -l app=zk
 NAME                           READY     STATUS    RESTARTS   AGE
 zk1-4074261018-dbjnw           1/1       Running   0          1m
 zk2-389827100-0mlrq            1/1       Running   0          1m
 zk3-1002916382-6q8mt           1/1       Running   0          1m
 
-$ kubectl get svc
+$ kubectl get svc -l app=zk
 NAME              CLUSTER-IP   EXTERNAL-IP   PORT(S)                                        AGE
-kubernetes        10.0.0.1     <none>        443/TCP                                        27d
 zk1               10.0.0.230   <pending>     2181:32533/TCP,2888:30055/TCP,3888:32278/TCP   2m
 zk2               10.0.0.45    <pending>     2181:30810/TCP,2888:32584/TCP,3888:31637/TCP   2m
 zk3               10.0.0.18    <pending>     2181:32475/TCP,2888:32229/TCP,3888:31527/TCP   2m
