@@ -1,0 +1,63 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: zk-0
+  labels:
+    app: zk
+    node: node0
+spec:
+  type: LoadBalancer
+  ports:
+  - name: port-2181
+    port: 2181
+  - name: port-2888
+    port: 2888
+  - name: port-3888
+    port: 3888
+  selector:
+    app: zk
+    node: node0
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: zk-1
+  labels:
+    app: zk
+    node: node1
+spec:
+  type: LoadBalancer
+  ports:
+  - name: port-2181
+    port: 2181
+  - name: port-2888
+    port: 2888
+  - name: port-3888
+    port: 3888
+  selector:
+    app: zk
+    node: node1
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: zk-2
+  labels:
+    app: zk
+    node: node2
+spec:
+  type: LoadBalancer
+  ports:
+  - name: port-2181
+    port: 2181
+  - name: port-2888
+    port: 2888
+  - name: port-3888
+    port: 3888
+  selector:
+    app: zk
+    node: node2
+
