@@ -34,12 +34,12 @@ $ cd kubernetes-zookeeper-cluster/
 
 ```sh
 $ kubectl create -f .
-service "zk1" created
-deployment "zk1" created
-service "zk2" created
-deployment "zk2" created
-service "zk3" created
-deployment "zk3" created
+deployment "zk-0" created
+deployment "zk-1" created
+deployment "zk-2" created
+service "zk-0" created
+service "zk-1" created
+service "zk-2" created
 ```
 
 
@@ -47,23 +47,23 @@ Check the pods and services:
 
 ```sh
 $ kubectl get pods -l app=zk
-NAME                           READY     STATUS    RESTARTS   AGE
-zk1-4074261018-dbjnw           1/1       Running   0          1m
-zk2-389827100-0mlrq            1/1       Running   0          1m
-zk3-1002916382-6q8mt           1/1       Running   0          1m
+NAME                       READY     STATUS    RESTARTS   AGE
+zk-0-2081291772-zwlwk      1/1       Running   0          5s
+zk-1-3337616897-125xs      1/1       Running   0          5s
+zk-2-303496710-jdznc       1/1       Running   0          5s
 
 $ kubectl get svc -l app=zk
-NAME              CLUSTER-IP   EXTERNAL-IP   PORT(S)                                        AGE
-zk1               10.0.0.230   <pending>     2181:32533/TCP,2888:30055/TCP,3888:32278/TCP   2m
-zk2               10.0.0.45    <pending>     2181:30810/TCP,2888:32584/TCP,3888:31637/TCP   2m
-zk3               10.0.0.18    <pending>     2181:32475/TCP,2888:32229/TCP,3888:31527/TCP   2m
+NAME         CLUSTER-IP   EXTERNAL-IP   PORT(S)                                        AGE
+zk-0         10.0.0.67    <pending>     2181:32108/TCP,2888:30697/TCP,3888:31436/TCP   2m
+zk-1         10.0.0.18    <pending>     2181:31410/TCP,2888:31117/TCP,3888:32687/TCP   2m
+zk-2         10.0.0.106   <pending>     2181:32339/TCP,2888:31346/TCP,3888:30378/TCP   2m
 
 ```
 
 Verify the cluster start correct or not
 
 ```sh
-kubectl exec -ti zk1-4074261018-dbjnw -- /bin/bash
+kubectl exec -ti zk-0-2081291772-zwlwk -- /bin/bash
 bash-4.3# zkCli.sh -server zk2:2181 ls /
 Connecting to zk2:2181
 2017-01-20 02:16:52,753 [myid:] - INFO  [main:Environment@100] - Client environment:zookeeper.version=3.4.9-1757313, built on 08/23/2016 06:50 GMT
